@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import desktopDivider from "./images/pattern-divider-desktop.svg";
+import ShuffleButton from "./components/ShuffleButton";
+import { api } from "./utils/Api";
 
 function App() {
+  const [adviceNumber, setAdviceNumber] = useState();
+  const [advice, setAdvice] = useState("Loading...");
+
+  useEffect(() => {
+    fetch("https://api.adviceslip.com/advice")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.slip);
+        setAdvice(res.slip.advice);
+        setAdviceNumber(res.slip.id);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <p className="subtext">Advice #{adviceNumber}</p>
+        <h1 className="advice">{advice}</h1>
+        <img className="divider" src={desktopDivider} alt="divider" />
+        <ShuffleButton />
+      </div>
     </div>
   );
 }
