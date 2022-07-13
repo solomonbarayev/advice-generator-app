@@ -2,7 +2,6 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import desktopDivider from "./images/pattern-divider-desktop.svg";
 import ShuffleButton from "./components/ShuffleButton";
-import { api } from "./utils/Api";
 
 function App() {
   const [adviceNumber, setAdviceNumber] = useState();
