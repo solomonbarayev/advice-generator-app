@@ -20,6 +20,8 @@
   border-radius: 12px;
   text-align: center;
   position: relative;
+  max-width: 600px;
+  width: 100%;
 }
 
 .advice {
